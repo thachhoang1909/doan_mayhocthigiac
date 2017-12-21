@@ -65,8 +65,10 @@ class ExtractDeepFeatures:
                 print("Feature shape: ", feature.shape)
 
             # store feature to storage
-            path_split = re.split('[. \\\]', image_path)
-            file_path = "features\\" + model_name + '\\' + path_split[1] + "\\"
+            path_split = re.split('[. //]', image_path)
+            # print("path split 0: ", path_split[0])
+            # print("paht split 1: ", path_split[1])
+            file_path = "features/" + model_name + '/' + path_split[1] + "/"
             file_name = path_split[2] + '.pkl'
 
             # create directory if not exist
@@ -89,9 +91,11 @@ class ExtractDeepFeatures:
 if __name__ == '__main__':
     extract = ExtractDeepFeatures()
 
-    images = glob.glob('images\*\*.png')
+    images = glob.glob('images//*//*.png')
+    
+    # print(images[0])
 
-    extract.extractListFeatures(images, 'vgg16')
+    extract.extractListFeatures(images, 'inceptionv3')
 
 
 

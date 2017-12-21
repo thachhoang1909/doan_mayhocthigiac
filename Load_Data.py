@@ -17,9 +17,9 @@ class LoadData:
             # feature path: features\glass_cups\72.pkl
             for path in imagePaths:
                 path = path.strip('\n')
-                pathSplit = re.split('[. \\\]', path)
+                pathSplit = re.split('[. //]', path)
 
-                featurePath = 'features\\' + model_name + '\\' + pathSplit[1] + '\\' + pathSplit[2] + '.pkl'
+                featurePath = 'features/' + model_name + '/' + pathSplit[1] + '/' + pathSplit[2] + '.pkl'
                 with open(featurePath, mode='rb') as featureFile:
                     features.append(pickle.load(featureFile))
             features = np.array(features)
@@ -39,19 +39,19 @@ class LoadData:
         # load file train.txt
 
         # features
-        trainImages = "db\\" + data + "\\train.txt"
+        trainImages = "db/" + data + "/train.txt"
         train_X = self.loadFeatures(trainImages, model)
 
         # labels
-        trainLabels = "db\\" + data + "\\lbtrain.txt"
+        trainLabels = "db/" + data + "/lbtrain.txt"
         train_Y = self.loadLabels(trainLabels)
 
 
         # load file test.txt
-        testImages = "db\\" + data + "\\test.txt"
+        testImages = "db/" + data + "/test.txt"
         test_X = self.loadFeatures(testImages, model)
 
-        testLabels = "db\\" + data + "\\lbtest.txt"
+        testLabels = "db/" + data + "/lbtest.txt"
         test_Y = self.loadLabels(testLabels)
 
         return train_X, test_X, train_Y, test_Y
@@ -61,7 +61,7 @@ class LoadData:
         # load file train.txt
         images = {}
         # features
-        trainImages = "db\\" + data + "\\train.txt"
+        trainImages = "db/" + data + "/train.txt"
         with open(trainImages, mode='r') as file:
             # get image path
             imagePaths = file.readlines()
@@ -69,7 +69,7 @@ class LoadData:
             images['trainImage'] = imagePaths
 
         # load file test.txt
-        testImages = "db\\" + data + "\\test.txt"
+        testImages = "db/" + data + "/test.txt"
         with open(testImages, mode='r') as file:
             # get image path
             imagePaths = file.readlines()
